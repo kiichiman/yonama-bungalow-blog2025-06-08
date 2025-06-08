@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>与名間バンガロー清掃作業 - トライアスロン大会に向けて</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.05)"/><circle cx="40" cy="60" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content {
+            padding: 4rem 3rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2c5aa0;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .image-gallery {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            font-style: italic;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover .image-caption {
+            transform: translateY(0);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .text-content {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .content {
+                padding: 2rem 1.5rem;
+            }
+
+            .two-column,
+            .three-column {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3c72 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">与名間バンガロー清掃作業</h1>
+                <p class="hero-subtitle">トライアスロン大会に向けて - 絶景の中での清掃作業</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <div class="highlight">
+                    <p>今年もトライアスロン大会を前に、天城町観光水産課様からご依頼をいただき、与名間バンガローの徹底清掃を行いました。昨年に引き続き2年連続でのご依頼となり、前回の作業にご満足いただけたことを実感でき、大変嬉しく思っております。</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">棟のバンガロー</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">日間の作業期間</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">年連続のご依頼</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">与名間海岸の美しい松林と青い海</h2>
+                <div class="image-gallery two-column">
+                    <div class="image-container">
+                        <img src="IMG_0152.jpeg" alt="バンガローから望む海の絶景">
+                        <div class="image-caption">バンガローから望む美しい海岸線と青い空</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="IMG_0136.jpeg" alt="太陽の光が美しく差し込む海の風景">
+                        <div class="image-caption">太陽の光が海面に美しく反射する絶景</div>
+                    </div>
+                </div>
+                <p class="text-content">与名間バンガローは、美しい山々と目の前に広がる青い海に囲まれた絶好のロケーションに位置しています。このような素晴らしい環境での清掃作業は、気持ちも晴々として取り組むことができます。</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">壮大な自然に囲まれた作業環境</h2>
+                <div class="image-gallery two-column">
+                    <div class="image-container">
+                        <img src="IMG_0134.jpeg" alt="美しい松林と海岸線">
+                        <div class="image-caption">与名間海岸の特徴的な松林と透明度の高い海</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="IMG_0133.jpeg" alt="バンガローから望む緑豊かな山々">
+                        <div class="image-caption">緑豊かな山々に囲まれた静寂な環境</div>
+                    </div>
+                </div>
+                <p class="text-content">与名間の自然環境は本当に素晴らしく、作業をしながらも心が癒される空間です。青い海、緑豊かな山々、そして心地よい海風が、清掃作業を特別な体験にしてくれます。</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">5日間にわたる徹底清掃</h2>
+                <div class="image-gallery">
+                    <div class="image-container">
+                        <img src="IMG_0132.jpeg" alt="バンガロー室内から望む海の絶景">
+                        <div class="image-caption">清掃完了後のバンガロー内部からの美しい眺望</div>
+                    </div>
+                </div>
+                <p class="text-content">今回は6棟のバンガローを5日間かけて徹底的に清掃いたしました。昨年の初期清掃が完了していたため作業は比較的スムーズでしたが、清掃範囲が広いため、2日間はスタッフに応援をお願いして作業を進めました。</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">窓清掃に丸一日を費やす</h2>
+                <div class="image-gallery two-column">
+                    <div class="image-container">
+                        <img src="IMG_0127.jpeg" alt="バンガロー入口での清掃作業">
+                        <div class="image-caption">プロの技術による丁寧な清掃作業</div>
+                    </div>
+                    <div class="image-container">
+                        <img src="IMG_0126.jpeg" alt="取り外した窓の徹底清掃">
+                        <div class="image-caption">窓ガラスを取り外しての本格的な清掃作業</div>
+                    </div>
+                </div>
+                <p class="text-content">特に窓清掃には丸一日を要しました。バンガローの大きな窓からは素晴らしい景色を望むことができるため、宿泊される皆様に最高の眺望を楽しんでいただけるよう、一枚一枚丁寧に清掃作業を行いました。</p>
+                <p class="text-content">窓ガラスを取り外して隅々まで清掃することで、透明度を最大限に高め、美しい海と山の景色をクリアにご覧いただけるよう心がけました。</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">快適な空間づくりへの想い</h2>
+                <div class="highlight">
+                    <p>トライアスロンに参加される鉄人たちが、最高のコンディションで大会に臨めるよう、快適で清潔な空間を提供することが私たちの使命です。美しい自然環境の中で、心も体もリフレッシュしていただけるよう、細部まで気を配った清掃を心がけています。</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">まとめ</h2>
+                <p class="text-content">与名間バンガローでの清掃作業は、美しい自然に囲まれながら行う特別な体験でもあります。宿泊される皆様に最高の時間を過ごしていただけるよう、今後も丁寧で質の高いサービスを提供してまいります。</p>
+                <p class="text-content">トライアスロン大会の成功と、参加される皆様の素晴らしい思い出作りのお手伝いができることを、心より嬉しく思っております。</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>与名間バンガロー清掃作業 - 自然と共に、最高のサービスをお届けします</p>
+        </div>
+    </div>
+
+    <script>
+        // スムーズスクロール効果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 全てのセクションを監視
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // 画像のlazy loading効果
+        document.querySelectorAll('.image-container img').forEach(img => {
+            img.addEventListener('load', () => {
+                img.style.opacity = '1';
+            });
+        });
+
+        // パララックス効果（軽微）
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-section');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
